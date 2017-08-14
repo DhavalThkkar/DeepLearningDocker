@@ -73,18 +73,6 @@ RUN apt-get update && apt-get install -y \
 # Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
 	update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
-# Set up notebook config
-COPY jupyter_notebook_config.py /root/.jupyter/
-
-# Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
-COPY run_jupyter.sh /root/
-
-# Expose Ports for TensorBoard (6006), Ipython (8888)
-EXPOSE 6006 8888
-
-WORKDIR "/root"
-CMD ["/bin/bash"]
-
 # Anaconda
 RUN wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh && bash Anaconda3-4.4.0-Linux-x86_64.sh -b
 RUN rm -r .bashrc && wget -O .bashrc https://raw.githubusercontent.com/DhavalThkkar/DeepLearningDocker/master/bashrc.txt
@@ -100,6 +88,19 @@ RUN pip --no-cache-dir install \
 
 # Install Keras and OpenCV Python
 RUN pip --no-cache-dir install keras 
+
+# Set up notebook config
+COPY jupyter_notebook_config.py /root/.jupyter/
+
+# Jupyter has issues with being run directly: https://github.com/ipython/ipython/issues/7062
+COPY run_jupyter.sh /root/
+
+# Expose Ports for TensorBoard (6006), Ipython (8888)
+EXPOSE 6006 8888
+
+WORKDIR "/root"
+CMD ["/bin/bash"]
+
 
 
 
