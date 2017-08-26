@@ -73,11 +73,6 @@ RUN apt-get update && apt-get install -y \
 # Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
 	update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
-# Anaconda
-RUN wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh && bash Anaconda3-4.4.0-Linux-x86_64.sh -b
-RUN rm -r .bashrc && wget -O .bashrc https://raw.githubusercontent.com/DhavalThkkar/DeepLearningDocker/master/bashrc.txt
-RUN alias brc='source ~/.bashrc'
-
 # Install TensorFlow
 RUN pip --no-cache-dir install \
 	https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.2.1-cp36-cp36m-linux_x86_64.whl
@@ -101,6 +96,10 @@ EXPOSE 6006 8888
 WORKDIR "/root"
 CMD ["/bin/bash"]
 
+# Anaconda
+RUN wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh && bash Anaconda3-4.4.0-Linux-x86_64.sh -b
+RUN rm -r .bashrc && wget -O .bashrc https://raw.githubusercontent.com/DhavalThkkar/DeepLearningDocker/master/bashrc.txt
+RUN alias brc='source ~/.bashrc'
 
 
 

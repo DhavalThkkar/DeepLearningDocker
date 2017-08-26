@@ -77,6 +77,17 @@ RUN apt-get update && apt-get install -y \
 # Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
 	update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
+# Install TensorFlow
+RUN pip --no-cache-dir install \
+	https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.2.1-cp36-cp36m-linux_x86_64.whl
+
+# Install CNTK
+RUN pip --no-cache-dir install \
+	https://cntk.ai/PythonWheel/CPU-Only/cntk-2.1-cp36-cp36m-linux_x86_64.whl
+
+# Install Keras and OpenCV Python
+RUN pip --no-cache-dir install keras 
+
 # Set up notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
 
