@@ -56,8 +56,6 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 
 
 ##### Issues
-I have tested both images on Ubuntu and they work well.
-
 **If there is any issue, please feel free to open an issue on GitHub or contact me on dhaval.thakkar@somaiya.edu**
 
 
