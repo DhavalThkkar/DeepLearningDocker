@@ -4,7 +4,6 @@ If you're getting started with Machine Learning/Deep Learning, you know how hard
 
 This image can be used on Ubuntu. Steps for installing docker and getting started with the container are given below. Also, this image can be used on AWS, GCP or any cloud platform.
 
-The **CPU** version should work on Windows and Ubuntu. I have 
 ## Included Libraries
 
 * Ubuntu 14.04
