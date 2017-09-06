@@ -42,6 +42,8 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 <br/>```sudo bash nvidia-docker.sh```
 3. Building Docker Image
 <br/>```sudo docker build -t deeplearningdockergpu -f Dockerfile.gpu .```
+4. Restarting Nvidia-docker
+<br/>```systemctl restart nvidia-docker```
 4. Running the Docker Container
 <br/>```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu:latest bash```
 
