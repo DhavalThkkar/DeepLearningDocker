@@ -45,8 +45,7 @@ RUN ${PIP} --no-cache-dir install \
 
 # Installing MXNet
 RUN ${PIP} --no-cache-dir install \
-	mxnet==0.11.0 && \
-	graphviz
+	mxnet==0.11.0
 
 #Installing Keras
 RUN ${PIP} --no-cache-dir install keras
