@@ -45,6 +45,9 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 4. Running the Docker Container
 <br/>```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu:latest bash```
 
+### Running Jupyter notebook
+**```jupyter notebook --allow-root```**
+
 *Note*: You can remove __```-v /sharedfolder:/root/sharedfolder```__ from CPU as well as GPU if you're running the container on cloud. This command is to just link your local files on the container.
 
 ### Some Handy commands
