@@ -12,15 +12,14 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 * [Anaconda 4.4.0 Package (Python 3.6)](https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh) [**Jupyter Notebook included**]
 * [Keras](https://github.com/fchollet/keras)
 * [Tensorflow](https://github.com/tensorflow/tensorflow)
-* [CNTK](https://github.com/Microsoft/CNTK)
+* [PyTorch](http://pytorch.org/)
+* [MXNet](https://mxnet.incubator.apache.org/get_started/install.html)
 
 ## To be Included
 
-* PyTorch
 * Caffe
-* MXNet
 * OpenCV
-
+* CNTK
 
 #### CPU
 1. Installing Docker
