@@ -1,81 +1,26 @@
 FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 
-#RUN echo -e "\n**********************\nNVIDIA Driver Version\n**********************\n" && \
-#	cat /proc/driver/nvidia/version && \
-#	echo -e "\n**********************\nCUDA Version\n**********************\n" && \
-#	nvcc -V && \
-#	echo -e "\n\nBuilding your Deep Learning Docker Image...\n"
+MAINTAINER Dhaval Thakkar <dhaval.thakkar@somaiya.edu>
+
+ARG PIP=/root/anaconda3/bin/pip
 
 # Install some dependencies
 RUN apt-get update && apt-get install -y \
-		bc \
-		build-essential \
-		cmake \
-		curl \
-		g++ \
-		gfortran \
-		git \
-		libffi-dev \
-		libfreetype6-dev \
-		libhdf5-dev \
-		libjpeg-dev \
-		liblcms2-dev \
-		libopenblas-dev \
-		liblapack-dev \
-		libopenjpeg2 \
-		libpng12-dev \
-		libssl-dev \
-		libtiff5-dev \
-		libwebp-dev \
-		libzmq3-dev \
-		nano \
-		pkg-config \
-		python-dev \
-		software-properties-common \
-		unzip \
-		vim \
-		wget \
-		zlib1g-dev \
-		qt5-default \
-		libvtk6-dev \
-		zlib1g-dev \
-		libjpeg-dev \
-		libwebp-dev \
-		libpng-dev \
-		libtiff5-dev \
-		libjasper-dev \
-		libopenexr-dev \
-		libgdal-dev \
-		libdc1394-22-dev \
-		libavcodec-dev \
-		libavformat-dev \
-		libswscale-dev \
-		libtheora-dev \
-		libvorbis-dev \
-		libxvidcore-dev \
-		libx264-dev \
-		yasm \
-		libopencore-amrnb-dev \
-		libopencore-amrwb-dev \
-		libv4l-dev \
-		libxine2-dev \
-		libtbb-dev \
-		libeigen3-dev \
-		python-dev \
-		python-tk \
-		python-numpy \
-		python3-dev \
-		python3-tk \
-		python3-numpy \
-		ant \
-		default-jdk \
-		doxygen \
-		&& \
-	apt-get clean && \
-	apt-get autoremove && \
-	rm -rf /var/lib/apt/lists/* && \
-# Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
-	update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
+                build-essential \
+                cmake \
+                curl \
+                g++ \
+                nano \
+                pkg-config \
+                software-properties-common \
+                unzip \
+                vim \
+                wget \
+                doxygen \
+                && \
+        apt-get clean && \
+        apt-get autoremove && \
+        rm -rf /var/lib/apt/lists/* 
 
 #Anaconda
 RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh && \
@@ -85,8 +30,17 @@ RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.
 RUN rm -r /root/.bashrc
 COPY bashrc.txt /root/.bashrc
 RUN alias brc='source ~/.bashrc'
-RUN rm /usr/bin/python3 && \
-    ln -s /usr/bin/python3.6 /usr/bin/python3
+
+# Installing TensorFlow
+RUN ${PIP} --no-cache-dir install \	
+	https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.2.1-cp36-cp36m-linux_x86_64.whl
+
+# Installing CNTK
+RUN ${PIP} --no-cache-dir install \
+        https://cntk.ai/PythonWheel/CPU-Only/cntk-2.1-cp36-cp36m-linux_x86_64.whl
+
+#Installing Keras
+RUN ${PIP} --no-cache-dir install keras
 
 #Setup notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
