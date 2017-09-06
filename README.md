@@ -25,38 +25,40 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 #### CPU
 1. Installing Docker
     * Installing Docker on Ubuntu 14.04:
-    ```sudo bash /InstallDocker/docker_install1404.sh```
+    <br/>```sudo bash /InstallDocker/docker_install1404.sh```
     * Installing Docker on Ubuntu 16.04 or above:
-    ```sudo bash /InstallDocker/docker_install1604.sh```
+    <br/>```sudo bash /InstallDocker/docker_install1604.sh```
 2. Building Docker Image: 
-```sudo docker build -t deeplearningdockercpu -f Dockerfile.cpu .```
+<br/>```sudo docker build -t deeplearningdockercpu -f Dockerfile.cpu .```
 3. Running the Docker Container 
-```sudo docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearning bash``` 
+<br/>```sudo docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearning bash``` 
 
 ### GPU
 1. Installing Docker
     * Installing Docker on Ubuntu 14.04:
-    ```sudo bash /InstallDocker/docker_install1404.sh```
+    <br/>```sudo bash /InstallDocker/docker_install1404.sh```
     * Installing Docker on Ubuntu 16.04 or above:
-    ```sudo bash /InstallDocker/docker_install1604.sh```
+    <br/>```sudo bash /InstallDocker/docker_install1604.sh```
 2. Installing NVIDIA-Docker
-```sudo bash nvidia-docker.sh```
+<br/>```sudo bash nvidia-docker.sh```
 3. Building Docker Image
-```sudo docker build -t deeplearningdockergpu -f Dockerfile.gpu .```
+<br/>```sudo docker build -t deeplearningdockergpu -f Dockerfile.gpu .```
 4. Running the Docker Container
-```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu bash```
+<br/>```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu bash```
 
 *Note*: You can remove __```-v /sharedfolder:/root/sharedfolder```__ from CPU as well as GPU if you're running the container on cloud. This command is to just link your local files on the container.
 
 ### Some Handy commands
 1. Removing all containers
-```sudo docker rm $(sudo docker ps -a -f status=exited -q)```
+<br/>```sudo docker rm $(sudo docker ps -a -f status=exited -q)```
 2. Removing all images
-```sudo docker rmi $(sudo docker images -a -q)```
+<br/>```sudo docker rmi $(sudo docker images -a -q)```
 
 
 ##### Issues
-I have tested both images on Ubuntu and they work well. If there is any issue, please feel free to open an issue on GitHub or contact me on dhaval.thakkar@somaiya.edu
+I have tested both images on Ubuntu and they work well.
+
+**If there is any issue, please feel free to open an issue on GitHub or contact me on dhaval.thakkar@somaiya.edu**
 
 
 
