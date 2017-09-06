@@ -24,26 +24,26 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 #### CPU
 1. Installing Docker
     * Installing Docker on Ubuntu 14.04:
-    <br/>```sudo bash /InstallDocker/docker_install1404.sh```
+    <br/>```sudo bash InstallDocker/docker_install1404.sh```
     * Installing Docker on Ubuntu 16.04 or above:
-    <br/>```sudo bash /InstallDocker/docker_install1604.sh```
+    <br/>```sudo bash InstallDocker/docker_install1604.sh```
 2. Building Docker Image: 
 <br/>```sudo docker build -t deeplearningdockercpu -f Dockerfile.cpu .```
 3. Running the Docker Container 
-<br/>```sudo docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearning bash``` 
+<br/>```sudo docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockercpu:latest bash``` 
 
 ### GPU
 1. Installing Docker
     * Installing Docker on Ubuntu 14.04:
-    <br/>```sudo bash /InstallDocker/docker_install1404.sh```
+    <br/>```sudo bash InstallDocker/docker_install1404.sh```
     * Installing Docker on Ubuntu 16.04 or above:
-    <br/>```sudo bash /InstallDocker/docker_install1604.sh```
+    <br/>```sudo bash InstallDocker/docker_install1604.sh```
 2. Installing NVIDIA-Docker
 <br/>```sudo bash nvidia-docker.sh```
 3. Building Docker Image
 <br/>```sudo docker build -t deeplearningdockergpu -f Dockerfile.gpu .```
 4. Running the Docker Container
-<br/>```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu bash```
+<br/>```sudo nvidia-docker run -it -p 8888:8888 -p 6006:6006 -v /sharedfolder:/root/sharedfolder deeplearningdockergpu:latest bash```
 
 *Note*: You can remove __```-v /sharedfolder:/root/sharedfolder```__ from CPU as well as GPU if you're running the container on cloud. This command is to just link your local files on the container.
 
