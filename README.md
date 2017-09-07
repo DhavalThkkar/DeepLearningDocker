@@ -7,8 +7,8 @@ This image can be used on Ubuntu. Steps for installing docker and getting starte
 ## Included Libraries
 
 * Ubuntu 14.04
-* CUDA 7.5 (GPU version only)
-* cuDNN v4 (GPU version only)
+* CUDA 8.0 (GPU version only)
+* cuDNN v5 (GPU version only)
 * [Anaconda 4.4.0 Package (Python 3.6)](https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh) [**Jupyter Notebook included**]
 * [Keras](https://github.com/fchollet/keras)
 * [Tensorflow](https://github.com/tensorflow/tensorflow)
