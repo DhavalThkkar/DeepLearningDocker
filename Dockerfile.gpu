@@ -43,6 +43,9 @@ RUN ${PIP} --no-cache-dir install \
 	${PIP} --no-cache-dir install \
 	torchvision
 
+# Installing Numpy for the current user (BUGFIX)
+RUN ${PIP} --no-cache-dir install -U numpy
+
 # Installing MXNet
 RUN ${PIP} --no-cache-dir install \
 	mxnet-cu80==0.11.0
