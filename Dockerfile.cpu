@@ -5,7 +5,11 @@ MAINTAINER Dhaval Thakkar <dhaval.thakkar@somaiya.edu>
 ARG PIP=/root/anaconda3/bin/pip
 
 # Install some dependencies
+RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E1DD270288B4E6030699E45FA1715D88E1DF1F24
+RUN sudo su -c "echo 'deb http://ppa.launchpad.net/git-core/ppa/ubuntu trusty main' > /etc/apt/sources.list.d/git.list"
 RUN apt-get update && apt-get install -y \
+		git -y \
+		qt5-default -y \
                 build-essential \
                 cmake \
                 curl \
@@ -23,6 +27,7 @@ RUN apt-get update && apt-get install -y \
         apt-get clean && \
         apt-get autoremove && \
         rm -rf /var/lib/apt/lists/* 
+
 
 #Anaconda
 RUN wget --quiet https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh && \
@@ -52,6 +57,17 @@ RUN ${PIP} --no-cache-dir install \
 
 #Installing Keras
 RUN ${PIP} --no-cache-dir install keras
+
+# Install OpenCV
+RUN git clone --depth 1 https://github.com/opencv/opencv.git /root/opencv && \
+	cd /root/opencv && \
+	mkdir build && \
+	cd build && \
+	cmake -DWITH_QT=ON -DWITH_OPENGL=ON -DFORCE_VTK=ON -DWITH_TBB=ON -DWITH_GDAL=ON -DWITH_XINE=ON -DBUILD_EXAMPLES=ON .. && \
+	make -j"$(nproc)"  && \
+	make install && \
+	ldconfig && \
+	echo 'ln /dev/null /dev/raw1394' >> ~/.bashrc
 
 #Setup notebook config
 COPY jupyter_notebook_config.py /root/.jupyter/
